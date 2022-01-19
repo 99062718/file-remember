@@ -1,0 +1,47 @@
+{
+    "rooms":{
+        "hero":{
+            "village":[
+                {"content": [["label", ["Where would you like to go?"]], ["radio", ["forest", "stay"]], ["button", ["Submit"]]],
+                    "goTo": [["forest", 0, "forest"], ["village", 0, "stay"]]},
+                {"content": [["label", ["test"]]]}
+            ],
+    
+            "forest":[
+                {"content": [["label", ["mathQuestion"]], ["spinbox", [""]], ["button", ["Submit"]]],
+                    "goTo": [["village", 0, "True"], ["village", 1, "False"]]}
+            ]
+        },
+    
+    
+    
+        "villain":{
+            "overlord's castle":[
+                {"content": [["label", ["BIG MONSTER", "mathQuestion"]], ["spinbox", [""]], ["button", ["Submit"]]],
+                    "optional":{"doDamageWhen":["False"], "deathMessage": "DEATH", "boss":["random place", 0, 7], "doDamageToBossWhen":["True"]}},
+                {"content": [["label", ["SWING"]]]}
+            ],
+            "random place":[
+                {"content": [["label", ["GOOD JOB THEYRE DEAD!!!!"]], ["gameEnd"]]}
+            ]
+        }
+    },
+
+    "characters":{
+        "hero":{
+            "maxHealth": 15,
+            "attack": 3
+        },
+    
+        "villain":{
+            "maxHealth": 30,
+            "attack": 7
+        }
+    },
+    
+    "difficulties":{
+        "easy": [4, 100, 20, 3],
+        "medium": [4, 1000, 100, 5],
+        "hard": [5, 5000, 500, "max"]
+    }
+}
