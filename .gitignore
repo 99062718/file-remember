@@ -1,2 +1,3 @@
 *.json
 !gameData.json
+!fpsLeaderboard.json
