@@ -13,7 +13,8 @@ currentBoss = []
 save = False
 
 # todo: expand on options menu with current region, cheatcodes and some other stuff (font size and font customization if able to),
-# support for items (maybe)
+# support for items (maybe),
+# adventure game creator GUI
 
 # dicts for game data have been moved to json. look inside the adventureData folder to find it
 
@@ -53,7 +54,7 @@ def contentCreator(newContent=[]): # the only reason theContentDestroyer9000 sti
                 isMath = True
                 continue
 
-            gridOrPlace = "place" if value == "Options" else "grid"
+            gridOrPlace = "place" if len(info) > 2 else "grid"
 
             if value == "mathQuestion": # detects when to generate a math question
                 value = rooms[currentCharacter][currentRegion[0]][currentRegion[1]]["content"][newContent.index(info)][1][info[1].index("mathQuestion")] = mathQuestionCreator()
@@ -225,6 +226,12 @@ def healthCheck(deathMessage=""): # if player get hit. player get hurt. if playe
 
 #----------------------------------------------------------------------------------Extra functions
 
+#-------------------------------------------adventure game creator
+
+class creatorMenus:
+    def creatorMainMenu():
+        contentCreator([["label", ["Welcome to the adventure game creator!", "Select one of the editors"]], ["button", ["Story", "Character", "Difficulty"]]])
+
 #-------------------------------------------Character and difficulty selects
 
 def characterSubmit(): #sets all stats for character once chosen and sends them to first room of their respective story
@@ -257,7 +264,7 @@ def diffSubmit(diffDefined=False): # selects a difficulty. if a save has been fo
         multiplicationNumber = difficulties[currentDiff][2]
         damageToPlayer = difficulties[currentDiff][3] if difficulties[currentDiff][3] != "max" else health
 
-        contentCreator([["button", ["Options"]]])
+        contentCreator([["button", ["Options"], ""]])
         if save == False:
             contentCreator(rooms[currentCharacter][list(rooms[currentCharacter].keys())[0]][0]["content"])
         else:
@@ -278,7 +285,7 @@ class optionMenu: #everything related to the options menu
         messagebox.showinfo(message="Your current region is: {}".format(currentRegion[0]))
 
     def exitMenu():
-        contentCreator([["button", ["Options"]]])
+        contentCreator([["button", ["Options"], ""]])
         contentCreator(rooms[currentCharacter][currentRegion[0]][currentRegion[1]]["content"])
 
 functionList = {
